@@ -1,0 +1,77 @@
+﻿@model Student
+
+<h1>HTML HELPERS</h1>
+<hr />
+<partial name="_AlertBoxPartial">AlertBoxPartial ının farklı bir gösterimi </partial>
+
+@* Bir diğer partial view yüklenme şekli yukardaki gibidir.*@
+<div>
+    <div>
+        <input type ="text" placeholder="name" value="John" /> 
+        <hr />
+        @Html.TextBox("Name",null, new { placeholder = "enter your name", @class="form-control", type = "number" })
+       
+    </div>
+    <hr />
+
+    <div>
+        @Html.ActionLink("ANA SAYFAYA GİT!","Index","Home",null, new {@class ="btn btn-primary"})
+    </div>
+    <hr />
+   <div>
+       @Html.TextArea("açıklama","Buraya Açıklama Giriniz", new {@class ="form-control", rows ="4"})
+   </div>
+   <hr />
+   <div>
+       @Html.CheckBox("seçim",true)
+   </div>
+   <hr />
+   <div>
+       @Html.RadioButton("renk",null,false)
+        @Html.RadioButton("renk",null,true)
+   </div>
+   <hr />
+   <div>
+       @{
+            List<SelectListItem> dropDownList = new List<SelectListItem>
+            {
+             new SelectListItem("mavi","blue"),
+             new SelectListItem("sarı","yellow"),
+             new SelectListItem("kırmızı","red"),
+             new SelectListItem("yeşil","green"),
+            };
+        }
+        @Html.DropDownList("renkler",dropDownList,"seçiniz", new {@class ="form-control"})
+   </div>
+  </div>
+  <hr />
+  <DİV>
+    @Html.ListBox("renkler2", dropDownList,new {@class ="form-control"})
+  </DİV>
+  <hr />
+  <div>
+    @Html.Password("şifre","123",new {@class ="form-control"})
+  </div>
+  <hr />
+  <div>
+      @Html.Label("etiket","Adınız: ")
+    @Html.TextBox("txtName",null,new {@class ="form-control"})
+  </div>
+  <hr />
+  <div>
+      @Html.Display("FirstName")
+  </div>
+<hr />
+<div>
+    <hr />
+    @Html.Hidden("gizli","Bu gizli bir veridir") gizlidir görünmez bu input, sayfanın arkasında veri tutmamıza yarar
+    <hr />
+</div>
+<hr />
+<div>
+    @Html.Raw("<b>bu metin önemlidir</b>")
+</div>
+
+
+   
+

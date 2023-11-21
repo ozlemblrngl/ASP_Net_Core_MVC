@@ -1,0 +1,34 @@
+﻿@model Job
+
+<h1>Create Job</h1>
+<br />
+<div class="row">
+    <div class="col">
+      <form method="post" asp-action="Create">
+            <div class="form-text ">
+                <label asp-for="Summary">Summary</label>
+                <input asp-for="Summary" class=" form-control" placeholder="Job Summary" />
+            </div>
+            <div class="form-text ">
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description" rows="2" class=" form-control" placeholder="Job Desc."></textarea>
+            </div>
+            <div class="form-text ">
+                <label asp-for="Assignee">Assignee</label>
+                <select asp-for="Assignee" class="form-control">
+                    <option value="">Seçiniz</option>
+                    <option value="John Doe">John Doe</option>
+                    <option value="Jack Red">Jack Red</option>
+                    <option value="Walter White">Walter White</option>
+                </select>
+            </div>
+            <div class="form-text ">
+                <input asp-for="Completed" class=" form-check-input" />
+                <label asp-for="Completed" class="form-check-label">Completed</label>
+            </div>
+            <div class="form-text text-end">
+                <button type="Submit" class="btn btn-primary">Send</button>
+            </div>
+      </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Styles{
+    <style>
+        #btn{color:red;}
+    </style>
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <button class="btn btn-primary" id ="btn" onclick="btn_click()">Bana Tıkla</button>
+</div>
+
+
+@await Html.PartialAsync("_AlertBoxPartial")
+@* Bir diğer partial view yüklenme şekli yukardaki gibidir.*@
+
+<partial name="_AlertBoxPartial">AlertBoxPartial ının farklı bir gösterimi </partial>
+
+@* Bir diğer partial view yüklenme şekli yukardaki gibidir.*@
+
+@{
+    await Html.RenderPartialAsync("_AlertBoxPartial");
+}
+@* Bir diğer partial view yüklenme şekli yukardaki gibidir.*@
+
+@section Menu{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home Page</a>
+    </li>
+}
+
+@section Scripts{ 
+    <script>
+        function btn_click() { 
+
+            alert($(#btn).text());
+        }
+    </script>
+}
+

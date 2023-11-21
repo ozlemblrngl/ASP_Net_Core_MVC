@@ -1,0 +1,55 @@
+﻿@using WebApplication_FirstAspNetCoreApp.Controllers
+
+<h1>ViewBag, ViewData ve TempData</h1>
+<hr />
+
+<h5>VIEWBAG</h5>
+
+<div>
+    Name Surname (ViewBag) : @ViewBag.NameSurname
+</div>
+
+<div>
+    Postal Code (ViewBag) : @ViewBag.PostalCode
+</div>
+<br />
+
+<h5>VIEWBAG</h5>
+
+<div>
+    Full Name (ViewData): @ViewData["FullName"]
+</div>
+
+<div>
+    Active? (ViewData): @((bool)ViewData["IsActive"] == true ? "Evet" : "Hayır") - @ViewData["IsActive"]
+</div>
+<br />
+
+<h5>TEMPDATA</h5>
+
+@* <div>
+    Temp Number (TempData): @TempData["TempNumber"]
+</div> *@
+<br />
+
+<div> DropDown Örneği</div>
+<div>
+    @{
+        
+       List<DropDownDataItem> items = (List<DropDownDataItem>)ViewData["cities"];
+       //List<SelectListItem> listItems = new List<SelectListItem>();
+
+        // foreach (DropDownDataItem item in items)
+        // {
+        //     listItems.Add(new SelectListItem(item.Value, item.Id.ToString()));
+        // }
+        // yukarıdaki yerine aşağıdaki gibi de yazabiliriz
+
+        List<SelectListItem> listItems = items.Select(item =>
+        new SelectListItem(item.Value, item.Id.ToString())).ToList(); 
+    }
+    Şehir:  @Html.DropDownList("şehirler",listItems, "seçiniz", new {@class="form-control"})
+</div>
+
+
+<a asp-action="ViewBagViewDataTempData2">Sayfa 2'ye git!'</a>
