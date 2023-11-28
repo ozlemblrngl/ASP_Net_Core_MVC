@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MFramework.Services.FakeData;
+using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 using WebApplication_EFCoreWithMvcCore.Models.Entities;
 
 namespace WebApplication_EFCoreWithMvcCore.Controllers
@@ -9,8 +11,8 @@ namespace WebApplication_EFCoreWithMvcCore.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            
-            List<Book> books= _db.Books.ToList();
+
+            List<Book> books = _db.Books.ToList();
             return View(books);
         }
 
@@ -24,11 +26,11 @@ namespace WebApplication_EFCoreWithMvcCore.Controllers
         [HttpPost]
         public IActionResult Create(Book book)
         {
-            if(ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-                _db.Books.Add(book);    
+                _db.Books.Add(book);
                 _db.SaveChanges();
-             return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
             return View(book);
@@ -37,7 +39,7 @@ namespace WebApplication_EFCoreWithMvcCore.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-           Book book= _db.Books.FirstOrDefault(b=> b.Id == id);
+            Book book = _db.Books.FirstOrDefault(b => b.Id == id);
 
             return View(book);
         }
@@ -46,7 +48,7 @@ namespace WebApplication_EFCoreWithMvcCore.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-          Book book=_db.Books.FirstOrDefault(b=> b.Id == id);
+            Book book = _db.Books.FirstOrDefault(b => b.Id == id);
             return View(book);
         }
 
@@ -55,10 +57,10 @@ namespace WebApplication_EFCoreWithMvcCore.Controllers
         {
             if (ModelState.IsValid)
             {
-                Book bookdb = _db.Books.FirstOrDefault(b=> b.Id==id);
-                bookdb.Title =book.Title;
-                bookdb.Author =book.Author;
-                bookdb.Summary =book.Summary;
+                Book bookdb = _db.Books.FirstOrDefault(b => b.Id == id);
+                bookdb.Title = book.Title;
+                bookdb.Author = book.Author;
+                bookdb.Summary = book.Summary;
                 bookdb.PageCount = book.PageCount;
                 bookdb.Published = book.Published;
 
@@ -80,15 +82,43 @@ namespace WebApplication_EFCoreWithMvcCore.Controllers
         [HttpPost]
         public IActionResult DeleteConfirm(int id)
         {
-          
-                Book bookdb = _db.Books.FirstOrDefault(b => b.Id == id);
-                _db.Books.Remove(bookdb);
-                _db.SaveChanges();
-                
-                return RedirectToAction("Index");
-            
+
+            Book bookdb = _db.Books.FirstOrDefault(b => b.Id == id);
+            _db.Books.Remove(bookdb);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+
         }
 
+        [HttpGet]
+        public IActionResult CreateFakeData()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Book book = new Book()
+                {
+                    Title = NameData.GetCompanyName(),
+                    Summary = TextData.GetSentences(4),
+                    Author = NameData.GetFullName(),
+                    PageCount = NumberData.GetNumber(10, 1000),
+                    Published = BooleanData.GetBoolean()
+                };
+                _db.Books.Add(book);
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
+
+          
 }
+
+
+
+
+
+
+
+
