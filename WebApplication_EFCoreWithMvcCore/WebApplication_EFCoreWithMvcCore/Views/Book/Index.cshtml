@@ -1,0 +1,46 @@
+﻿@model List<Book>
+
+<h1 class="display-4">Books</h1>
+<hr />
+
+<div class="row">
+    <div class="col-12 mb-3 text-end">
+        <a asp-action="Create" class="btn btn-primary btn-sm"><i class="fa fa-plus mr-2"></i> Create Book</a>
+    </div>
+    <div class="col-12">
+        @if (Model == null || Model.Count == 0)
+        {
+            <div class="alert alert-warning">Hiç kitap verisi bulunmamaktadır.</div>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Page Count</th>
+                        <th>Published</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Book book in Model)
+                    {
+                        <tr>
+                            <td>@book.Title</td>
+                            <td>@book.Author</td>
+                            <td>@book.PageCount</td>
+                            <td>@(book.Published ? "Evet" : "Hayır")</td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-secondary btn-sm"><i class="fa fa-search mr-2"></i></a>
+                                <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-info btn-sm"><i class=" fa fa-edit mr-2"></i></a>
+                                <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-info btn-danger btn-sm"><i class="fa fa-trash mr-2"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
