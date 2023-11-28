@@ -1,0 +1,67 @@
+﻿@model Book
+
+<h1 class="display-4">Book Details</h1>
+<hr />
+
+<div class="row">
+    <div class="col-2">
+        <label asp-for="Id" class="fw-bold"></label>
+    </div>
+    <div class="col-10">
+        @Model.Id
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <label asp-for="Title"></label>
+    </div>
+    <div class="col-10">
+        @Model.Title
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <label asp-for="Author"></label>
+    </div>
+    <div class="col-10">
+    @Model.Author
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2"> 
+        <label asp-for="PageCount"></label>
+    </div>
+    <div class="col-10">
+        @Model.PageCount
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <label asp-for="Published"></label>
+    </div>
+    <div class="col-10">
+        @(Model.Published?"Evet": "Hayır")
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <label asp-for="Summary"></label>
+    </div>
+    <div col-10>
+        @Model.Summary
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="offset-2 col-10 text-end">
+        <a asp-action="Index" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-alt-circle-left mr-2"></i> Back To List!</a>
+        <button asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"> Edit</i></button>
+    </div>
+</div>
+
+
