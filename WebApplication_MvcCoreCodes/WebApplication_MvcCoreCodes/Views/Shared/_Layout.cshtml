@@ -35,6 +35,10 @@
                                 <li><a class="dropdown-item" asp-action="LocalFunctions">Local Functions</a></li>
                                 <li><a class="dropdown-item" asp-action="TemplatedDelegates">Templated Delegates</a></li>
                                 <li><a class="dropdown-item" asp-action="ClientSideModelValidation">Client-Side Model Validation</a></li>
+                                <li><a class="dropdown-item" asp-action="ContentResult">Content Result</a></li>
+                                <li><a class="dropdown-item" asp-action="RedirectResult">Redirect Result</a></li>
+                                <li><a class="dropdown-item" asp-action="RedirectResult" asp-route-versiyon="2">Redirect Permanent Result</a></li>
+                                <li><a class="dropdown-item" asp-action="FileResult">File Result</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -54,6 +58,8 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <partial name="_ValidationScriptsPartial"/>   
+    eğer projenin tamamında kullanacaksak client side validationu buraya bu şekilde yazarız aksi halde diğer türlü yaparız *@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/toastr.js/toastr.min.js"></script>

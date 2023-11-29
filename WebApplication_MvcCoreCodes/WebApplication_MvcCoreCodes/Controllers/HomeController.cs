@@ -49,11 +49,32 @@ namespace WebApplication_MvcCoreCodes.Controllers
         {
             if (ModelState.IsValid)
             {
-                // kaydete ve yönlendirme işlemi yaparız
+                // kaydet ve yönlendirme işlemi yaparız
             }
 
-
             return View(model);
+        }
+
+        public IActionResult ContentResult()
+        {
+            return Content("Hello World");
+        }
+
+        public IActionResult RedirectResult(int versiyon = 1)
+        {
+            switch (versiyon)
+            {
+                case 2:
+                    return RedirectPermanent("/Home/ContentResult");
+                case 1:
+                default:
+                    return Redirect("/Home/ContentResult");
+            };
+        }
+
+        public IActionResult FileResult() 
+        {
+            return File("~/files/sample.pdf","application/pdf");
         }
     }
 }
