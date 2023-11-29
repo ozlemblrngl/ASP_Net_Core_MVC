@@ -33,5 +33,27 @@ namespace WebApplication_MvcCoreCodes.Controllers
         {
             return View();
         }
+
+        public IActionResult TemplatedDelegates()
+        {
+            return View();
+        }
+
+        public IActionResult ClientSideModelValidation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ClientSideModelValidation(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                // kaydete ve yönlendirme işlemi yaparız
+            }
+
+
+            return View(model);
+        }
     }
 }

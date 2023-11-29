@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Templated Delegates";
+    List<Member> members = new List<Member>();
+
+    for (int i = 0; i < 15; i++)
+    {
+        members.Add(new Member
+                        {
+                            Name = NameData.GetFullName(),
+
+                            Birth = NumberData.GetNumber(1950, 2004),
+
+                            HasJob = BooleanData.GetBoolean(),
+
+                            City = PlaceData.GetCity(),
+
+                            Country = PlaceData.GetCountry(),
+
+                        });
+    }
+    // item --> Member 'a işaret etmekte
+    Func<Member, object> BusinessCardTemplate =
+    @<div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@item.Name (@item.Birth)</h5> 
+                <h6 class="card-subtitle text-muted">@item.City / @item.Country </h6>
+                <p class="card-text">Codeove Company</p>
+                <p><b>Has Job: </b><i class=" fa @(item.HasJob ? "fa-check text-success" : "fa-times text-danger")"></i></p>
+            </div>
+        </div>
+    </div>;
+
+
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h5>Templated Delegates</h5>
+    </div>
+</div>
+
+<table class="table table-hover table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birth</th>
+            <th>Age</th>
+            <th>Has Job</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Business Card</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in members)
+        {
+            <tr>
+                <td>@member.Name</td>
+                <td>@member.Birth</td>
+                <td>@(DateTime.Now.Year - member.Birth)</td>
+                <td>@member.HasJob</td>
+                <td>@member.City</td>
+                <td>@member.Country</td>
+                <td>
+                    @BusinessCardTemplate(member)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
