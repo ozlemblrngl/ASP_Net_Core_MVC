@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MFramework.Services.FakeData;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net;
 using WebApplication_MvcCoreCodes.Models;
 
 namespace WebApplication_MvcCoreCodes.Controllers
@@ -75,6 +77,49 @@ namespace WebApplication_MvcCoreCodes.Controllers
         public IActionResult FileResult() 
         {
             return File("~/files/sample.pdf","application/pdf");
+        }
+
+        public IActionResult StatusCodeResult(int versiyon =1)
+        {
+            switch(versiyon)
+            {
+                case 2:
+                   // return new StatusCodeResult((int)HttpStatusCode.NotFound); --> böyle de yazılır
+                    return NotFound();
+                default:
+                    return new StatusCodeResult((int)HttpStatusCode.Created);
+                   // return Created(); --> böyle de yazılır
+            }
+            
+        }
+
+        public IActionResult JsonResult()
+        {
+            //User user = new User()
+            //{
+            //    FirstName = NameData.GetFirstName(),
+            //    LastName = NameData.GetSurname(),
+            //    Email = NetworkData.GetEmail(),
+            //};
+            // return Json(user);
+             return Json(new { FullName = "özlem Belörenoğlu", Mail = "ozlem@ozlem.com" });
+        }
+
+        public IActionResult PartialViewResult(int versiyon =1)
+        {
+            if(versiyon == 1)
+            {
+                return PartialView("_CardPartial", new User { FirstName ="Mustafa", LastName ="Belörenoğlu", Email="mustafa@ozlem.com" } );
+            }
+            else
+            {
+                return PartialView("_CardPartial");
+            }
+        }
+
+        public IActionResult PartialViewPage()
+        {
+            return View();
         }
     }
 }

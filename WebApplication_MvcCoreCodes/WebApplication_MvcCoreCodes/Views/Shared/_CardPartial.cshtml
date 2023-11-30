@@ -1,0 +1,34 @@
+﻿ @model User
+@if ( Model == null )
+{
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@NameData.GetFullName()</h5>
+                <h6 class="card-subtitle text-muted">@NetworkData.GetEmail() </h6>
+                <p class="card-text">Codeove Company</p>
+                <p>@TextData.GetSentences(10)</p>
+            </div>
+        </div>
+    </div>
+    ;
+
+}
+else
+{
+    <div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
+                <h6 class="card-subtitle text-muted">@Model.Email </h6>
+                <p class="card-text">@NameData.GetCompanyName()</p>
+                <p>@TextData.GetSentences(8)</p>
+            </div>
+        </div>
+    </div>
+    ;
+
+}
+
+
+ 

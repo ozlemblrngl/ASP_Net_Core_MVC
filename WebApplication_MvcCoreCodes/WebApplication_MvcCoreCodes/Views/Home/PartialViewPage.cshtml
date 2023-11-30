@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Partial View Page";
+}
+<h1>Partial View Page</h1>
+<hr />
+<div class="row mb-4">
+    <div class="col">
+        <button class="btn btn-primary" type="button" onclick="loadCard()">Kartı Yükle</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4" id="content">
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function loadCard() 
+        { 
+            $("#content").load("/Home/PartialViewResult");
+        }
+    </script>
+}
