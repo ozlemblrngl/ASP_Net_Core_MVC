@@ -1,4 +1,5 @@
 ﻿using MFramework.Services.FakeData;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Net;
@@ -119,6 +120,19 @@ namespace WebApplication_MvcCoreCodes.Controllers
 
         public IActionResult PartialViewPage()
         {
+            return View();
+        }
+
+        public IActionResult SetSession() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SetSession(string fullName)
+        {
+            HttpContext.Session.SetString("namesurname", fullName);
+           // string namesurname = HttpContext.Session.GetString("namesurname"); --> c# tarafındaki okuma yöntemi
             return View();
         }
     }
