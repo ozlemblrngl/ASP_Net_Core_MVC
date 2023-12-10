@@ -135,5 +135,28 @@ namespace WebApplication_MvcCoreCodes.Controllers
            // string namesurname = HttpContext.Session.GetString("namesurname"); --> c# tarafındaki okuma yöntemi
             return View();
         }
+
+        public IActionResult Cookie()
+        {
+            if (HttpContext.Request.Cookies.ContainsKey("username"))
+            {
+                string uname = HttpContext.Request.Cookies["username"].ToString();
+                ViewData["username"] = uname;
+            }
+            
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Cookie(string username, string password)
+        {
+            if(password == "1234")
+            {
+                HttpContext.Response.Cookies.Append("username", username);
+                return RedirectToAction("Cookie");
+            }
+            ViewData["error"] = "hatalı şifre";
+            return View();
+        }
     }
 }
