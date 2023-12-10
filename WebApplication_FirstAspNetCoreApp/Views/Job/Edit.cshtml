@@ -1,10 +1,10 @@
 ﻿@model Job
 
-<h1>Create Job</h1>
+<h1>Edit Job</h1>
 <br />
 <div class="row">
     <div class="col">
-      <form method="post" asp-action="Create">
+      <form method="post" asp-action="Edit">
           <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*All dersek hem form annotation uyarısı hem de custom yani bizim yaptığımız validation uyarıları gelir, ModelOnly'de ise property hataları hariç sadece bizim yaptığımız validationlara ilişkin hata uyarıları gelir. Biz All demeyip her bir property hatasını ayrı ayrı göstersin diye spanler içerisinde aşağıda yazıyoruz. None dersek hiç hata göstermez.*@
 
             <div class="form-group ">
@@ -16,7 +16,7 @@
 
             <div class="form-text ">
                 <label asp-for="Description"></label>
-                <textarea asp-for="Description" rows="2" class=" form-control" placeholder="Job Desc. "></textarea> @* placeholder="Job Desc. buradan silip view da Display attribute içerisinde Prompt ile düzenleyebiliriz.*@
+                <textarea asp-for="Description" rows="2" class=" form-control" placeholder="Job Desc."></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-text text-end">
-                <button type="Submit" class="btn btn-primary">Send</button>
+                <button type="Submit" class="btn btn-primary">Save</button>
             </div>
       </form>
     </div>

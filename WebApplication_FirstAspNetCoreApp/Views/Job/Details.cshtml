@@ -1,0 +1,56 @@
+﻿@model Job
+
+<h1>Job Details</h1>
+<br />
+
+<div class="row">
+    <div class="col-2">
+        <b>Id</b>
+    </div>
+    <div class="col-10">
+        @Model.Id
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <b>Summary</b>
+    </div>
+    <div class="col-10">
+        @Model.Summary
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <b>Description</b>
+    </div>
+    <div class="col-10">
+        @Model.Description
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <b>Assignee</b>
+    </div>
+    <div class="col-10">
+        @Model.Assignee
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <b>Coöpleted</b>
+    </div>
+    <div class="col-10">
+        @(Model.Completed ? "evet" : "hayır")
+    </div>
+</div>
+
+<div class="row">
+    <div class="offset-2 col-10">
+        <a asp-action="Index" class="btn btn-secondary">Return List</a>
+        <a asp-action="Edit" asp-route-id ="@Model.Id" class="btn btn-warning">Edit</a>
+    </div>
+</div>

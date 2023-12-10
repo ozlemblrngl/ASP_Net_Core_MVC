@@ -28,6 +28,7 @@ namespace WebApplication_FirstAspNetCoreApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            
             return View();
         }
 
@@ -44,12 +45,51 @@ namespace WebApplication_FirstAspNetCoreApp.Controllers
 
             if(ModelState.IsValid) // buarada @model sayfası gönderilir ve içindeki validationlar kontrol edilir. eğer işlemde hata yoksa yani geçerliyse if bloğu çalışır.
             {
+                model.Id = Guid.NewGuid();
                 JobList.jobs.Add(model);
                 return RedirectToAction("Index");
             }
             
             return View(model); // eğer işlemler kurallara uygun değilse sayfanın kendisine modelle birlikte dönülür ve uyarılar görünür.
            
+        }
+
+        // Job/Edit
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            Job job = JobList.jobs.FirstOrDefault(x=> x.Id == id);
+            return View(job);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Job model)
+        {
+            if (model.Summary?.StartsWith("test_") == false)
+            {
+                
+                
+                ModelState.AddModelError(string.Empty, "Bazı alanlarda hata bulunmaktadır.");
+                ModelState.AddModelError("Summary", "Summary alanı test_ ile başlamalıdır.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                model.Id = Guid.NewGuid();
+               
+                return RedirectToAction("Index");
+            }
+
+            return View(model); // eğer işlemler kurallara uygun değilse sayfanın kendisine modelle birlikte dönülür ve uyarılar görünür.
+
+        }
+
+        // Job/Details
+        [HttpGet]
+        public IActionResult Details(Guid id)
+        {
+            Job job = JobList.jobs.FirstOrDefault(x => x.Id == id);
+            return View(job);
         }
     }
 }

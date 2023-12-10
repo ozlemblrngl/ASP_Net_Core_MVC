@@ -30,11 +30,10 @@
                 <td>@(job.Completed ? "Evet" : "Hayır")</td>
                 <td>@job.Assignee</td>
                 <td>
-                    <a asp-action="Details">Details</a>
-                    <a asp-action="Edit">Edit</a>         
+                    <a asp-action="Details" asp-route-id="@job.Id">Details</a>
+                    <a asp-action="Edit" asp-route-id="@job.Id">Edit</a>         
                     <a asp-action="Delete">Delete</a>
                 </td>
-                
               </tr>
               }
           </tbody>

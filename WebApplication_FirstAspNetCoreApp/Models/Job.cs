@@ -4,8 +4,12 @@ namespace WebApplication_FirstAspNetCoreApp.Models
 {
     public class Job
     {
-        [Display(Name = "Özet")] // bunun çalışması için view'da ilgili  label içindeki açıklamanın silinmesi lazım.
+        public Guid Id { get; set; }
+
+        [Display(Name = "Özet", Prompt = "Job Summary")] 
+        // name'in çalışması için view'da ilgili  label içindeki açıklamanın silinmesi lazım.
         // Uyarıları türkçe olarak görmek istersek ErrorMessage = " " demek suretiyle çift tırnak içerisine mesajlarımızı yazarak gösterebiliriz.
+        // yine placeholder'ı view katmanından silip burada Prompt = özelliği ile de ekleyebiliriz.
         [Required(ErrorMessage = "Özet alanı boş geçilemez"), 
          StringLength(300, MinimumLength =50, ErrorMessage = "Maksimum 300, minimum 50 karakter olmalıdır.")] 
         // yukarıdaki attribute'ları ayrı ayrı da yazabiliriz.
