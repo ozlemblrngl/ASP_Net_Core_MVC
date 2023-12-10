@@ -34,8 +34,22 @@ namespace WebApplication_FirstAspNetCoreApp.Controllers
         [HttpPost]
         public IActionResult Create(Job model)
         {
-            JobList.jobs.Add(model);
-            return RedirectToAction("Index");
+            if(model.Summary?.StartsWith("test_") == false) // nullsa summary zaten aşağıdaki kuralı uygulayacaktır. Burada null olduğu için kontrol etmedi bile. aşağıya gitti. Null değilse burada kontrolunu yapacak.
+            {
+                // ModelState.AddModelError("Summary","Summary alanı test_ ile başlamalıdır."); // bu bizim fırlattığımız bir hatadır. summary alanında görünür modelonly de görünmez.
+                // ModelState.AddModelError(string.Empty, "Summary alanı test_ ile başlamalıdır."); // bu all alanında görünür. ve string.Empty yerine " " şeklinde boş metin de yazılabilir.
+                ModelState.AddModelError(string.Empty, "Bazı alanlarda hata bulunmaktadır."); // hem genel kısımda hatayı gösterir
+                ModelState.AddModelError("Summary", "Summary alanı test_ ile başlamalıdır."); // hem de özel olarak hata nerdeyse orada gösterir.
+            }
+
+            if(ModelState.IsValid) // buarada @model sayfası gönderilir ve içindeki validationlar kontrol edilir. eğer işlemde hata yoksa yani geçerliyse if bloğu çalışır.
+            {
+                JobList.jobs.Add(model);
+                return RedirectToAction("Index");
+            }
+            
+            return View(model); // eğer işlemler kurallara uygun değilse sayfanın kendisine modelle birlikte dönülür ve uyarılar görünür.
+           
         }
     }
 }

@@ -5,27 +5,37 @@
 <div class="row">
     <div class="col">
       <form method="post" asp-action="Create">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*All dersek hem form annotation uyarısı hem de custom yani bizim yaptığımız validation uyarıları gelir, ModelOnly'de ise property hataları hariç sadece bizim yaptığımız validationlara ilişkin hata uyarıları gelir. Biz All demeyip her bir property hatasını ayrı ayrı göstersin diye spanler içerisinde aşağıda yazıyoruz. None dersek hiç hata göstermez.*@
+
             <div class="form-group ">
-                <label asp-for="Summary">Summary</label>
+                <label asp-for="Summary"></label> @* açıklamadaki summary'i sildik. buranın içindeki açıklama boş olmazsa display attribute u çalışmaz.*@
                 <input asp-for="Summary" class=" form-control" placeholder="Job Summary" />
+                <span asp-validation-for="Summary" class="text-danger"></span>
+
             </div>
+
             <div class="form-text ">
-                <label asp-for="Description">Description</label>
+                <label asp-for="Description"></label>
                 <textarea asp-for="Description" rows="2" class=" form-control" placeholder="Job Desc."></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
             <div class="form-text ">
-                <label asp-for="Assignee">Assignee</label>
+                <label asp-for="Assignee"></label>
                 <select asp-for="Assignee" class="form-control">
                     <option value="">Seçiniz</option>
                     <option value="John Doe">John Doe</option>
                     <option value="Jack Red">Jack Red</option>
                     <option value="Walter White">Walter White</option>
                 </select>
+                <span asp-validation-for="Assignee" class="text-danger"></span>
             </div>
+
             <div class="form-text ">
                 <input asp-for="Completed" class=" form-check-input" />
-                <label asp-for="Completed" class="form-check-label">Completed</label>
+                <label asp-for="Completed" class="form-check-label"></label>
             </div>
+
             <div class="form-text text-end">
                 <button type="Submit" class="btn btn-primary">Send</button>
             </div>
