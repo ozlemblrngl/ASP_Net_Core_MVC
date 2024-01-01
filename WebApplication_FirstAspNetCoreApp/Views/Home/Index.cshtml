@@ -6,11 +6,22 @@
         #btn{color:red;}
     </style>
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <button class="btn btn-primary" id ="btn" onclick="btn_click()">Bana Tıkla</button>
+
+<div class="row">
+    <div class=" col-8">
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+            <button class="btn btn-primary" id="btn" onclick="btn_click()">Bana Tıkla</button>
+        </div>
+
+    </div>
+    <div class="col-4">
+        @await Component.InvokeAsync("Announcement")
+    </div>
 </div>
+
+
 
 
 @await Html.PartialAsync("_AlertBoxPartial")

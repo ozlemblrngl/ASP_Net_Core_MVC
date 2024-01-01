@@ -6,21 +6,30 @@
 @Html.Partial("_AlertBoxPartial")
 @* Bir diğer partial view yüklenme şekli yukardaki gibidir.*@
 
-<div>
-    <div> Id: @Model.Id </div>
-    <div> Name : @Model.FirstName </div>
-    <div> Last Name: @Model.LastName </div>
-    <div> Age: @Model.Age </div>
-    <div>
-        New Registration: @* @((Model.IsRegistrationNew ? "True" : "False"))  bu şekilde de yapabiliriz *@
-        @if(Model.IsRegistrationNew)
-        {
-            @: True
-        }
-        else
-        {
-            @: False
-        }
+<div class="row">
+    <div class=" col-8">
+        <div>
+            <div> Id: @Model.Id </div>
+            <div> Name : @Model.FirstName </div>
+            <div> Last Name: @Model.LastName </div>
+            <div> Age: @Model.Age </div>
+            <div>
+                New Registration: @* @((Model.IsRegistrationNew ? "True" : "False"))  bu şekilde de yapabiliriz *@
+                @if (Model.IsRegistrationNew)
+                {
+                    @: True
+                }
+                else
+                {
+                    @: False
+                }
+            </div>
+            <div> Password:  @Model.Password </div>
+        </div>
+
     </div>
-    <div> Password:  @Model.Password </div>
+    <div class="col-4">
+        @await Component.InvokeAsync("Announcement")
+    </div>
 </div>
+
